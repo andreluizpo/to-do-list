@@ -1,9 +1,40 @@
 import { CircleDashedIcon, Edit2Icon, Trash2Icon } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import "./styles/global.css";
 import "./styles/theme.css";
 
+type TaskModel = {
+    id: number;
+    name: string;
+    completed: boolean;
+};
+
 export function App() {
+    const [taskName, setTaskName] = useState("");
+    const [tasks, setTasks] = useState<TaskModel[]>([]);
+
+    useEffect(() => {
+        console.log(tasks);
+    }, [tasks]);
+
+    function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        if (!taskName) return;
+
+        const task = taskName.trim();
+
+        const newTask = {
+            id: Date.now(),
+            name: task,
+            completed: false,
+        };
+
+        setTasks((prevTask) => [...prevTask, newTask]);
+        console.log(newTask);
+    }
+
     return (
         <div className="container">
             <div className="content">
@@ -12,9 +43,15 @@ export function App() {
                         <h1>Lista de Tarefas</h1>
                     </div>
                     <div className="card-content">
-                        <form className="form">
+                        <form className="form" onSubmit={handleCreateNewTask}>
                             <label htmlFor="taskName">Nome da Tarefa</label>
-                            <input id="taskName" type="text" placeholder="Estudar" />
+                            <input
+                                id="taskName"
+                                type="text"
+                                placeholder="Estudar"
+                                value={taskName}
+                                onChange={(e) => setTaskName(e.target.value)}
+                            />
                             <button type="submit" className="form-button">
                                 Adicionar
                             </button>
