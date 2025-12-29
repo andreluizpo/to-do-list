@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { CircleDashedIcon, Edit2Icon, Trash2Icon } from "lucide-react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import "./styles/global.css";
+import "./styles/theme.css";
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export function App() {
+    return (
+        <div className="card">
+            <div className="card-header">
+                <h1>Lista de Tarefas</h1>
+            </div>
+            <div className="card-content">
+                <form>
+                    <label htmlFor="taskName">Nome da Tarefa</label>
+                    <input id="taskName" type="text" />
+                    <button>Adicionar</button>
+                </form>
+                <div className="task">
+                    <div className="task-header">
+                        <div className="task-title">
+                            <h2>Tarefas</h2>
+                        </div>
+                        <div className="task-summary">
+                            <span>Tarefas Concluídas: 01</span>
+                            <span>Tarefas Pendentes: 01</span>
+                        </div>
+                    </div>
+                    <div className="task-content">
+                        <div className="task-list">
+                            <div className="task-item">
+                                <div className="task-name">
+                                    <button>
+                                        <CircleDashedIcon />
+                                    </button>
+                                    Estudar
+                                </div>
+                                <div className="task-controls">
+                                    <button>
+                                        <Trash2Icon />
+                                    </button>
+                                    <button>
+                                        <Edit2Icon />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
-
-export default App
