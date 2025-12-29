@@ -1,4 +1,4 @@
-import { CircleDashedIcon, Edit2Icon, Trash2Icon } from "lucide-react";
+import { CircleCheckBigIcon, CircleDashedIcon, Edit2Icon, Trash2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import "./styles/global.css";
@@ -62,79 +62,43 @@ export function App() {
                                     <h2>Tarefas</h2>
                                 </div>
                                 <div className="task-summary">
-                                    <span>Tarefas Concluídas: 01</span>
-                                    <span>Tarefas Pendentes: 01</span>
+                                    <span>Tarefas Concluídas: 00</span>
+                                    <span>Tarefas Pendentes: 00</span>
                                 </div>
                             </div>
                             <div className="task-content">
                                 <div className="task-list">
-                                    <div className="task-item">
-                                        <div className="task-name">
-                                            <button>
-                                                <CircleDashedIcon />
-                                            </button>
-                                            Estudar
-                                        </div>
-                                        <div className="task-controls">
-                                            <button>
-                                                <Trash2Icon />
-                                            </button>
-                                            <button>
-                                                <Edit2Icon />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="task-item">
-                                        <div className="task-name">
-                                            <button>
-                                                <CircleDashedIcon />
-                                            </button>
-                                            Estudar
-                                        </div>
-                                        <div className="task-controls">
-                                            <button>
-                                                <Trash2Icon />
-                                            </button>
-                                            <button>
-                                                <Edit2Icon />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="task-item">
-                                        <div className="task-name">
-                                            <button>
-                                                <CircleDashedIcon />
-                                            </button>
-                                            Estudar
-                                        </div>
-                                        <div className="task-controls">
-                                            <button>
-                                                <Trash2Icon />
-                                            </button>
-                                            <button>
-                                                <Edit2Icon />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="task-item">
-                                        <div className="task-name">
-                                            <button>
-                                                <CircleDashedIcon />
-                                            </button>
-                                            Estudar
-                                        </div>
-                                        <div className="task-controls">
-                                            <button>
-                                                <Trash2Icon />
-                                            </button>
-                                            <button>
-                                                <Edit2Icon />
-                                            </button>
-                                        </div>
-                                    </div>
+                                    {tasks.length === 0 && (
+                                        <p style={{ textAlign: "center" }}>Adicione algumas tarefas.</p>
+                                    )}
+                                    {tasks.map((task) => {
+                                        return (
+                                            <div
+                                                key={task.id}
+                                                className="task-item"
+                                                style={task.completed === true ? { opacity: "0.5" } : {}}
+                                            >
+                                                <div className="task-name">
+                                                    <button>
+                                                        {task.completed === true ? (
+                                                            <CircleCheckBigIcon />
+                                                        ) : (
+                                                            <CircleDashedIcon />
+                                                        )}
+                                                    </button>
+                                                    {task.name}
+                                                </div>
+                                                <div className="task-controls">
+                                                    <button>
+                                                        <Trash2Icon />
+                                                    </button>
+                                                    <button>
+                                                        <Edit2Icon />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
