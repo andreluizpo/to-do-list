@@ -21,7 +21,10 @@ export function App() {
     function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        if (!taskName) return;
+        if (!taskName) {
+            alert("Digite uma tarefa");
+            return;
+        }
 
         const task = taskName.trim();
 
@@ -33,6 +36,26 @@ export function App() {
 
         setTasks((prevTask) => [...prevTask, newTask]);
         console.log(newTask);
+    }
+
+    function getNumberCompletedTasks() {
+        let count = 0;
+
+        tasks.forEach((task) => {
+            if (task.completed) count += 1;
+        });
+
+        return count;
+    }
+
+    function getNumberPendingTasks() {
+        let count = 0;
+
+        tasks.forEach((task) => {
+            if (!task.completed) count += 1;
+        });
+
+        return count;
     }
 
     return (
@@ -62,8 +85,8 @@ export function App() {
                                     <h2>Tarefas</h2>
                                 </div>
                                 <div className="task-summary">
-                                    <span>Tarefas Concluídas: 00</span>
-                                    <span>Tarefas Pendentes: 00</span>
+                                    <span>Tarefas Concluídas: {getNumberCompletedTasks()}</span>
+                                    <span>Tarefas Pendentes: {getNumberPendingTasks()}</span>
                                 </div>
                             </div>
                             <div className="task-content">
