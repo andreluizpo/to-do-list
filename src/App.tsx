@@ -35,7 +35,7 @@ export function App() {
         };
 
         setTasks((prevTask) => [...prevTask, newTask]);
-        console.log(newTask);
+        setTaskName("");
     }
 
     function getNumberCompletedTasks() {
@@ -56,6 +56,15 @@ export function App() {
         });
 
         return count;
+    }
+
+    function handleCompleteTask(id: number) {
+        const updatedTask = tasks.map((task) => {
+            if (task.id === id) return { ...task, completed: !task.completed };
+            return task;
+        });
+
+        setTasks(updatedTask);
     }
 
     return (
@@ -102,7 +111,19 @@ export function App() {
                                                 style={task.completed === true ? { opacity: "0.5" } : {}}
                                             >
                                                 <div className="task-name">
-                                                    <button>
+                                                    <button
+                                                        aria-label={
+                                                            task.completed === false
+                                                                ? "Marcar tarefa como concluída"
+                                                                : "Desmarcar tarefa como concluída"
+                                                        }
+                                                        title={
+                                                            task.completed === false
+                                                                ? "Marcar tarefa como concluída"
+                                                                : "Desmarcar tarefa como concluída"
+                                                        }
+                                                        onClick={() => handleCompleteTask(task.id)}
+                                                    >
                                                         {task.completed === true ? (
                                                             <CircleCheckBigIcon />
                                                         ) : (
@@ -112,10 +133,10 @@ export function App() {
                                                     {task.name}
                                                 </div>
                                                 <div className="task-controls">
-                                                    <button>
+                                                    <button aria-label="Excluir tarefa" title="Excluir tarefa">
                                                         <Trash2Icon />
                                                     </button>
-                                                    <button>
+                                                    <button aria-label="Editar tarefa" title="Editar tarefa">
                                                         <Edit2Icon />
                                                     </button>
                                                 </div>
