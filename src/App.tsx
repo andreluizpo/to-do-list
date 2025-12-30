@@ -67,6 +67,10 @@ export function App() {
         setTasks(updatedTask);
     }
 
+    function handleRemoveTask(id: number) {
+        setTasks(tasks.filter((task) => task.id !== id));
+    }
+
     return (
         <div className="container">
             <div className="content">
@@ -133,7 +137,11 @@ export function App() {
                                                     {task.name}
                                                 </div>
                                                 <div className="task-controls">
-                                                    <button aria-label="Excluir tarefa" title="Excluir tarefa">
+                                                    <button
+                                                        aria-label="Excluir tarefa"
+                                                        title="Excluir tarefa"
+                                                        onClick={() => handleRemoveTask(task.id)}
+                                                    >
                                                         <Trash2Icon />
                                                     </button>
                                                     <button aria-label="Editar tarefa" title="Editar tarefa">
