@@ -11,8 +11,13 @@ type TaskModel = {
 };
 
 export function App() {
-    const [taskName, setTaskName] = useState("");
+    const [task, setTask] = useState<TaskModel>({
+        id: 0,
+        name: "",
+        completed: false,
+    });
     const [tasks, setTasks] = useState<TaskModel[]>([]);
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         console.log(tasks);
@@ -21,21 +26,31 @@ export function App() {
     function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        if (!taskName) {
+        if (!task.name) {
             alert("Digite uma tarefa");
             return;
         }
 
-        const task = taskName.trim();
+        const taskName = task.name.trim();
 
-        const newTask = {
-            id: Date.now(),
-            name: task,
+        if (task.id === 0) {
+            const newTask = {
+                id: Date.now(),
+                name: taskName,
+                completed: false,
+            };
+
+            setTasks((prevTask) => [...prevTask, newTask]);
+        } else {
+            setTasks((prevTask) => prevTask.map((item) => (item.id === task.id ? task : item)));
+            setIsEditing(false);
+        }
+
+        setTask({
+            id: 0,
+            name: "",
             completed: false,
-        };
-
-        setTasks((prevTask) => [...prevTask, newTask]);
-        setTaskName("");
+        });
     }
 
     function getNumberCompletedTasks() {
@@ -71,6 +86,13 @@ export function App() {
         setTasks(tasks.filter((task) => task.id !== id));
     }
 
+    function handleTaskEdit(id: number) {
+        setIsEditing(true);
+        const taskToEdit = tasks.find((task) => task.id === id);
+
+        if (taskToEdit) setTask(taskToEdit);
+    }
+
     return (
         <div className="container">
             <div className="content">
@@ -85,11 +107,11 @@ export function App() {
                                 id="taskName"
                                 type="text"
                                 placeholder="Estudar"
-                                value={taskName}
-                                onChange={(e) => setTaskName(e.target.value)}
+                                value={task.name}
+                                onChange={(e) => setTask({ ...task, name: e.target.value })}
                             />
                             <button type="submit" className="form-button">
-                                Adicionar
+                                {isEditing ? "Salvar" : "Adicionar"}
                             </button>
                         </form>
                         <div className="task">
@@ -144,7 +166,11 @@ export function App() {
                                                     >
                                                         <Trash2Icon />
                                                     </button>
-                                                    <button aria-label="Editar tarefa" title="Editar tarefa">
+                                                    <button
+                                                        aria-label="Editar tarefa"
+                                                        title="Editar tarefa"
+                                                        onClick={() => handleTaskEdit(task.id)}
+                                                    >
                                                         <Edit2Icon />
                                                     </button>
                                                 </div>
