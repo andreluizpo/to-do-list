@@ -16,11 +16,18 @@ export function App() {
         name: "",
         completed: false,
     });
-    const [tasks, setTasks] = useState<TaskModel[]>([]);
+    const [tasks, setTasks] = useState<TaskModel[]>(() => {
+        const savedTask = localStorage.getItem("tasks");
+        return savedTask ? JSON.parse(savedTask) : [];
+    });
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         console.log(tasks);
+    }, [tasks]);
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
     function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
@@ -129,54 +136,58 @@ export function App() {
                                     {tasks.length === 0 && (
                                         <p style={{ textAlign: "center" }}>Adicione algumas tarefas.</p>
                                     )}
-                                    {tasks.map((task) => {
-                                        return (
-                                            <div
-                                                key={task.id}
-                                                className="task-item"
-                                                style={task.completed === true ? { opacity: "0.5" } : {}}
-                                            >
-                                                <div className="task-name">
-                                                    <button
-                                                        aria-label={
-                                                            task.completed === false
-                                                                ? "Marcar tarefa como concluída"
-                                                                : "Desmarcar tarefa como concluída"
-                                                        }
-                                                        title={
-                                                            task.completed === false
-                                                                ? "Marcar tarefa como concluída"
-                                                                : "Desmarcar tarefa como concluída"
-                                                        }
-                                                        onClick={() => handleCompleteTask(task.id)}
-                                                    >
-                                                        {task.completed === true ? (
-                                                            <CircleCheckBigIcon />
-                                                        ) : (
-                                                            <CircleDashedIcon />
-                                                        )}
-                                                    </button>
-                                                    {task.name}
+                                    {tasks
+                                        .sort((a, b) => {
+                                            return b.id - a.id;
+                                        })
+                                        .map((task) => {
+                                            return (
+                                                <div
+                                                    key={task.id}
+                                                    className="task-item"
+                                                    style={task.completed === true ? { opacity: "0.5" } : {}}
+                                                >
+                                                    <div className="task-name">
+                                                        <button
+                                                            aria-label={
+                                                                task.completed === false
+                                                                    ? "Marcar tarefa como concluída"
+                                                                    : "Desmarcar tarefa como concluída"
+                                                            }
+                                                            title={
+                                                                task.completed === false
+                                                                    ? "Marcar tarefa como concluída"
+                                                                    : "Desmarcar tarefa como concluída"
+                                                            }
+                                                            onClick={() => handleCompleteTask(task.id)}
+                                                        >
+                                                            {task.completed === true ? (
+                                                                <CircleCheckBigIcon />
+                                                            ) : (
+                                                                <CircleDashedIcon />
+                                                            )}
+                                                        </button>
+                                                        {task.name}
+                                                    </div>
+                                                    <div className="task-controls">
+                                                        <button
+                                                            aria-label="Excluir tarefa"
+                                                            title="Excluir tarefa"
+                                                            onClick={() => handleRemoveTask(task.id)}
+                                                        >
+                                                            <Trash2Icon />
+                                                        </button>
+                                                        <button
+                                                            aria-label="Editar tarefa"
+                                                            title="Editar tarefa"
+                                                            onClick={() => handleTaskEdit(task.id)}
+                                                        >
+                                                            <Edit2Icon />
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div className="task-controls">
-                                                    <button
-                                                        aria-label="Excluir tarefa"
-                                                        title="Excluir tarefa"
-                                                        onClick={() => handleRemoveTask(task.id)}
-                                                    >
-                                                        <Trash2Icon />
-                                                    </button>
-                                                    <button
-                                                        aria-label="Editar tarefa"
-                                                        title="Editar tarefa"
-                                                        onClick={() => handleTaskEdit(task.id)}
-                                                    >
-                                                        <Edit2Icon />
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
+                                            );
+                                        })}
                                 </div>
                             </div>
                         </div>
