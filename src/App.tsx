@@ -7,6 +7,7 @@ import { TaskContainer } from "./components/TaskContainer";
 
 import "./styles/global.css";
 import "./styles/theme.css";
+import { Footer } from "./components/Footer";
 
 export type TaskModel = {
     id: number;
@@ -82,6 +83,7 @@ export function App() {
                     <TaskContainer setTask={setTask} tasks={tasks} setTasks={setTasks} setIsEditing={setIsEditing} />
                 </CardContent>
             </Card>
+            <Footer />
         </Container>
     );
 }

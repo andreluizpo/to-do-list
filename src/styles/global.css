@@ -15,3 +15,16 @@ body {
     flex-direction: column;
     gap: 8px;
 }
+
+footer {
+    color: var(--text-muted);
+
+    & a {
+        color: var(--text-muted);
+        text-decoration: none;
+    }
+
+    & a:hover {
+        text-decoration: underline;
+    }
+}
