@@ -1,0 +1,23 @@
+.card {
+    width: 100%;
+    max-width: 350px;
+    margin: 24px;
+    background-color: var(--card-bg);
+    padding: 24px;
+    border-radius: 14px;
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 4px 10px var(--card-shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.cardHeader {
+    text-align: center;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

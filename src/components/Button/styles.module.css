@@ -1,0 +1,38 @@
+button {
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    outline: none;
+    font-family: var(--font-default);
+    transition: all 100ms ease-in-out;
+
+    &:focus {
+        box-shadow: 0 0 0 3px var(--focus-color-transparent);
+    }
+}
+
+.normal {
+    padding: 8px 12px;
+    background-color: var(--secondary);
+    color: #ffffff;
+
+    &:hover {
+        filter: brightness(95%);
+    }
+}
+
+.icon {
+    display: inline-flex;
+    color: var(--primary);
+    background-color: transparent;
+    padding: 6px;
+
+    &:hover {
+        background-color: var(--button-icon-hover);
+    }
+
+    & svg {
+        width: 16px;
+        height: 16px;
+    }
+}

@@ -10,86 +10,10 @@ body {
     color: var(--primary);
 }
 
-.content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.content {
-}
-
-.card {
-    width: 100%;
-    max-width: 350px;
-    margin: 24px;
-    background-color: var(--card-bg);
-    padding: 24px;
-    border-radius: 14px;
-    border: 1px solid var(--card-border-color);
-    box-shadow: 0 4px 10px var(--card-shadow-color);
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.card-header {
-    text-align: center;
-}
-
-.card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
 .form {
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-label {
-    font-weight: 500;
-}
-
-input {
-    outline: none;
-    padding: 7.5px 12px;
-    border-radius: 8px;
-    background-color: transparent;
-    border: 1px solid var(--card-border-color);
-    transition: all 100ms ease-in-out;
-    color: var(--input-color);
-
-    &:focus {
-        border-color: var(--focus-color);
-        box-shadow: 0 0 0 3px var(--focus-color-transparent);
-    }
-
-    &::placeholder {
-        font-family: var(--font-default);
-    }
-}
-
-.form-button {
-    cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: none;
-    background-color: var(--secondary);
-    color: #ffffff;
-    outline: none;
-    font-family: var(--font-default);
-    transition: all 100ms ease-in-out;
-
-    &:focus {
-        box-shadow: 0 0 0 3px var(--focus-color-transparent);
-    }
-
-    &:hover {
-        filter: brightness(95%);
-    }
 }
 
 .task {
@@ -135,55 +59,10 @@ input {
     display: flex;
     align-items: center;
     gap: 8px;
-
-    & button {
-        outline: none;
-        display: inline-flex;
-        cursor: pointer;
-        color: var(--primary);
-        background-color: transparent;
-        border: 1px solid transparent;
-        padding: 6px;
-        border-radius: 8px;
-        transition: all 100ms ease-in-out;
-
-        &:focus {
-            box-shadow: 0 0 0 3px var(--focus-color-transparent);
-        }
-
-        &:hover {
-            background-color: var(--button-icon-hover);
-        }
-    }
-}
-
-svg {
-    width: 16px;
-    height: 16px;
 }
 
 .task-controls {
     display: flex;
     align-items: center;
     gap: 8px;
-
-    & button {
-        outline: none;
-        display: inline-flex;
-        cursor: pointer;
-        color: var(--primary);
-        background-color: transparent;
-        border: 1px solid transparent;
-        padding: 6px;
-        border-radius: 8px;
-        transition: all 100ms ease-in-out;
-
-        &:focus {
-            box-shadow: 0 0 0 3px var(--focus-color-transparent);
-        }
-
-        &:hover {
-            background-color: var(--button-icon-hover);
-        }
-    }
 }
