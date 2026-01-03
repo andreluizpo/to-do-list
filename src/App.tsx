@@ -4,6 +4,7 @@ import { Container } from "./components/Container";
 import { Button } from "./components/Button";
 import { Input } from "./components/Input";
 import { Card, CardContent, CardHeader } from "./components/Card";
+import { TaskContainer } from "./components/TaskContainer";
 
 import "./styles/global.css";
 import "./styles/theme.css";
@@ -64,46 +65,6 @@ export function App() {
         });
     }
 
-    function getNumberCompletedTasks() {
-        let count = 0;
-
-        tasks.forEach((task) => {
-            if (task.completed) count += 1;
-        });
-
-        return count;
-    }
-
-    function getNumberPendingTasks() {
-        let count = 0;
-
-        tasks.forEach((task) => {
-            if (!task.completed) count += 1;
-        });
-
-        return count;
-    }
-
-    function handleCompleteTask(id: number) {
-        const updatedTask = tasks.map((task) => {
-            if (task.id === id) return { ...task, completed: !task.completed };
-            return task;
-        });
-
-        setTasks(updatedTask);
-    }
-
-    function handleRemoveTask(id: number) {
-        setTasks(tasks.filter((task) => task.id !== id));
-    }
-
-    function handleTaskEdit(id: number) {
-        setIsEditing(true);
-        const taskToEdit = tasks.find((task) => task.id === id);
-
-        if (taskToEdit) setTask(taskToEdit);
-    }
-
     return (
         <Container>
             <Card>
@@ -123,77 +84,7 @@ export function App() {
                         />
                         <Button type="submit">{isEditing ? "Salvar" : "Adicionar"}</Button>
                     </form>
-                    <div className="task">
-                        <div className="task-header">
-                            <div className="task-title">
-                                <h2>Tarefas</h2>
-                            </div>
-                            <div className="task-summary">
-                                <span>Tarefas Concluídas: {getNumberCompletedTasks()}</span>
-                                <span>Tarefas Pendentes: {getNumberPendingTasks()}</span>
-                            </div>
-                        </div>
-                        <div className="task-content">
-                            <div className="task-list">
-                                {tasks.length === 0 && <p style={{ textAlign: "center" }}>Adicione algumas tarefas.</p>}
-                                {tasks
-                                    .sort((a, b) => {
-                                        return b.id - a.id;
-                                    })
-                                    .map((task) => {
-                                        return (
-                                            <div
-                                                key={task.id}
-                                                className="task-item"
-                                                style={task.completed === true ? { opacity: "0.5" } : {}}
-                                            >
-                                                <div className="task-name">
-                                                    <Button
-                                                        variants="icon"
-                                                        aria-label={
-                                                            task.completed === false
-                                                                ? "Marcar tarefa como concluída"
-                                                                : "Desmarcar tarefa como concluída"
-                                                        }
-                                                        title={
-                                                            task.completed === false
-                                                                ? "Marcar tarefa como concluída"
-                                                                : "Desmarcar tarefa como concluída"
-                                                        }
-                                                        onClick={() => handleCompleteTask(task.id)}
-                                                    >
-                                                        {task.completed === true ? (
-                                                            <CircleCheckBigIcon />
-                                                        ) : (
-                                                            <CircleDashedIcon />
-                                                        )}
-                                                    </Button>
-                                                    {task.name}
-                                                </div>
-                                                <div className="task-controls">
-                                                    <Button
-                                                        variants="icon"
-                                                        aria-label="Excluir tarefa"
-                                                        title="Excluir tarefa"
-                                                        onClick={() => handleRemoveTask(task.id)}
-                                                    >
-                                                        <Trash2Icon />
-                                                    </Button>
-                                                    <Button
-                                                        variants="icon"
-                                                        aria-label="Editar tarefa"
-                                                        title="Editar tarefa"
-                                                        onClick={() => handleTaskEdit(task.id)}
-                                                    >
-                                                        <Edit2Icon />
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                            </div>
-                        </div>
-                    </div>
+                    <TaskContainer setTask={setTask} tasks={tasks} setTasks={setTasks} setIsEditing={setIsEditing} />
                 </CardContent>
             </Card>
         </Container>

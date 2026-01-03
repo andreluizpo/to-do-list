@@ -1,0 +1,50 @@
+.task {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.taskHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.taskSummary {
+    width: 100%;
+    font-size: 14px;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.taskContent {
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.taskItem {
+    border-radius: 8px;
+    background-color: var(--task-item-bg);
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.taskName {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.taskControls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
