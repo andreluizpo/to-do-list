@@ -1,4 +1,3 @@
-import { CircleCheckBigIcon, CircleDashedIcon, Edit2Icon, Trash2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Container } from "./components/Container";
 import { Button } from "./components/Button";
