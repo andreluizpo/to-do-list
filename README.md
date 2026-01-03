@@ -1,73 +1,100 @@
-# React + TypeScript + Vite
+# ✅ To-Do List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação de lista de tarefas desenvolvida com **React + TypeScript**, permitindo criar, editar, concluir e remover tarefas, com salvamento dos dados no **Local Storage**.
 
-Currently, two official plugins are available:
+Projeto online: https://to-do-list-ochre-psi.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🖼️ Preview do Projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🖥️ Desktop
 
-## Expanding the ESLint configuration
+<img src="./public/images/screenshot-desktop.png" style="width:100%;max-width: 1024px">
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+📱 Mobile
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+<img src="./public/images/screenshot-mobile.png" style="width:100%;max-width: 360px">
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Funcionalidades
+
+-   ➕ Adicionar novas tarefas
+-   ✏️ Editar tarefas existentes
+-   ✅ Marcar tarefas como concluídas
+-   ❌ Remover tarefas
+-   📊 Contador de tarefas concluídas e pendentes
+-   💾 Salvamento de dados com Local Storage
+-   📱 Interface simples e responsiva
+
+---
+
+## 🧠 O que eu aprendi com esse projeto
+
+Durante o desenvolvimento desse projeto, pude aprender e praticar:
+
+-   Uso de **React Hooks** (`useState`, `useEffect`)
+-   Criação e tipagem de estados com **TypeScript**
+-   Componentização e reutilização de componentes
+-   Comunicação entre componentes via **props**
+-   Manipulação de listas (CRUD)
+-   Salvamento de dados utilizando **Local Storage**
+-   Controle de formulários (inputs controlados)
+-   Criação de componentes reutilizáveis (Button, Input, Card, etc.)
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+-   React
+-   TypeScript
+-   Vite
+-   CSS Modules
+-   Lucide React (ícones)
+-   Local Storage
+
+---
+
+## ▶️ Como rodar o projeto localmente
+
+### Passo a passo
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/andreluizpo/to-do-list.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Acesse a pasta do projeto:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd to-do-list
 ```
+
+3. Instale as dependências:
+
+```bash
+npm install
+```
+
+4. Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+4. Acesse no navegador:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por André Luiz
+
+-   LinkedIn - https://www.linkedin.com/in/andreluizpereiradeoliveira
+-   GitHub - https://github.com/andreluizpo
