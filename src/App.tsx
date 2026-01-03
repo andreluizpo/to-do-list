@@ -27,10 +27,6 @@ export function App() {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        console.log(tasks);
-    }, [tasks]);
-
-    useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
