@@ -62,28 +62,35 @@ export function App() {
     }
 
     return (
-        <Container>
-            <Card>
-                <CardHeader>
-                    <h1>Lista de Tarefas</h1>
-                </CardHeader>
-                <CardContent>
-                    <form className="form" onSubmit={handleCreateNewTask}>
-                        <Input
-                            id="taskName"
-                            label="Nome da Tarefa"
-                            placeholder="Estudar"
-                            value={task.name}
-                            onChange={(e) => {
-                                setTask({ ...task, name: e.target.value });
-                            }}
+        <>
+            <Container>
+                <Card>
+                    <CardHeader>
+                        <h1>Lista de Tarefas</h1>
+                    </CardHeader>
+                    <CardContent>
+                        <form className="form" onSubmit={handleCreateNewTask}>
+                            <Input
+                                id="taskName"
+                                label="Nome da Tarefa"
+                                placeholder="Estudar"
+                                value={task.name}
+                                onChange={(e) => {
+                                    setTask({ ...task, name: e.target.value });
+                                }}
+                            />
+                            <Button type="submit">{isEditing ? "Salvar" : "Adicionar"}</Button>
+                        </form>
+                        <TaskContainer
+                            setTask={setTask}
+                            tasks={tasks}
+                            setTasks={setTasks}
+                            setIsEditing={setIsEditing}
                         />
-                        <Button type="submit">{isEditing ? "Salvar" : "Adicionar"}</Button>
-                    </form>
-                    <TaskContainer setTask={setTask} tasks={tasks} setTasks={setTasks} setIsEditing={setIsEditing} />
-                </CardContent>
-            </Card>
+                    </CardContent>
+                </Card>
+            </Container>
             <Footer />
-        </Container>
+        </>
     );
 }
